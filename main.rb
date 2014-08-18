@@ -45,7 +45,7 @@ def check_deposit_name(text,n=1)
     case deposits.size
     when 1
       puts deposits.first.eno
-      return depsoits.first.eno
+      return deposits.first.eno
     else 
       check_deposit_name(text,n+1)
     end  
