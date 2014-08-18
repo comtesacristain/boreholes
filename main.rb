@@ -36,16 +36,19 @@ def check_deposit_name(text,n=1)
     case n
     when 1
       name = ng[0]
-      deposits=Deposit.by_name(name)
-      case deposits.size
-      when 1
-      else 
-        check_deposit_name(text,2)
-      end  
     when 2
       name = "#{ng[0]} #{ng[1]}"
-      deposits=Deposit.by_name(name)
+    else
+      return 
     end
+    deposits=Deposit.by_name(name)
+    case deposits.size
+    when 1
+      puts deposits.first.eno
+      return depsoits.first.eno
+    else 
+      check_deposit_name(text,n+1)
+    end  
   end
   
 end
