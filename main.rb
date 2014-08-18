@@ -22,7 +22,7 @@ def read_borehole_attributes
   attr_list = borehole_atrributes.pluck(:text_value).uniq
   attr_list.each do |al|
     puts al
-    text = Ngram.new(al.gsub /'/, "\\\\'")
+    text = Ngram.new(al.gsub /'/, "\\\\\'")
     check_deposit_name(text)
   end
   
