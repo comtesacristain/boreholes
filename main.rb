@@ -13,6 +13,7 @@ require 'csv'
 require File.join('.', 'connection.rb')
 require File.join('./lib', 'minerals_entity_attribute.rb')
 require File.join('./lib', 'entity.rb')
+require File.join('./lib', 'deposit.rb')
 require File.join('./lib', 'drillhole.rb')
 require File.join('./lib', 'sample.rb')
 
