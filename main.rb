@@ -21,7 +21,7 @@ def read_borehole_attributes
   borehole_atrributes = MineralsEntityAttribute.deposit_find
 
   borehole_atrributes.each do |ba|
-    text = Ngram.new(ba.text_value)
+    text = Ngram.new(ba.text_value.gsub /'/, "////'")
     check_deposit_name(text)
   end
   
