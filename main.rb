@@ -19,9 +19,10 @@ require File.join('./lib', 'sample.rb')
 
 def read_borehole_attributes
   borehole_atrributes = MineralsEntityAttribute.deposit_find
-
-  borehole_atrributes.each do |ba|
-    text = Ngram.new(ba.text_value.gsub /'/, "////'")
+  attr_list = borehole_atrributes.pluck(:text_value).uniq
+  attr_list.each do |al|
+    puts al
+    text = Ngram.new(al.gsub /'/, "////'")
     check_deposit_name(text)
   end
   
