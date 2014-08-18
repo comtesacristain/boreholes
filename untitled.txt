@@ -1,0 +1,6 @@
+Query borehole attributes
+Pluck distinct names
+Split each into unigrams
+Remove generic words, numbers and words less than 3 from unigrams
+Query remaining unigrams
+On single result, associate 
