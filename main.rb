@@ -22,17 +22,16 @@ def read_borehole_attributes
   attr_list = borehole_atrributes.pluck(:text_value).uniq
   attr_list.each do |al|
     puts "Searching string '#{al}' ..."
-    text = Ngram.new(al.gsub /'/, "''") #ORACLE ESCAPE SINGLE QUOTE
-    deposit = check_deposit_name(text)
-	unless deposit.nil?
-	  puts "#{al} ::: #{deposit.inspect}"
-	end
-  end
-  
+    text=al.gsub(/\W+/,' ').trim
+    ngram = Ngram.new(al.gsub /'/, "''") #ORACLE ESCAPE SINGLE QUOTE
+    deposit = check_deposit_name(ngram)
+	  unless deposit.nil?
+	    puts "#{al} ::: #{deposit.inspect}"
+	  end
+  end  
 end
 
 def check_deposit_name(text,n=1)
-
   ngrams = text.ngrams(n)
   ngrams.each do |ng|
     case n
@@ -46,12 +45,12 @@ def check_deposit_name(text,n=1)
       return nil
     end
     deposits=Deposit.by_name(name)
-	puts "Found #{deposits.size} deposit(s)"
+	  puts "Found #{deposits.size} deposit(s)"
     case deposits.size
     when 1
       return deposits.first.eno
     else 
-	puts n
+	     puts n
       check_deposit_name(text,n+1)
     end  
   end
