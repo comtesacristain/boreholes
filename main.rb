@@ -1,5 +1,6 @@
 MINE_NAME_KEYWORDS = ["project","mine","deposit","gold","area","ore","body","wall"]
 
+require 'irb/completion'
 
 require 'rubygems'
 require  'safe_attributes/base'
