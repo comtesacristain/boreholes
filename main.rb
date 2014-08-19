@@ -25,7 +25,7 @@ def read_borehole_attributes
     text = Ngram.new(al.gsub /'/, "''") #ORACLE ESCAPE SINGLE QUOTE
     deposit = check_deposit_name(text)
 	unless deposit.nil?
-	 #puts "#{al} ::: #{deposit.eno} - #{deposit.entityid}"
+	  puts "#{al} ::: #{deposit.inspect}"
 	end
   end
   
