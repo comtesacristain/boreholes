@@ -21,9 +21,12 @@ def read_borehole_attributes
   borehole_atrributes = MineralsEntityAttribute.deposit_find
   attr_list = borehole_atrributes.pluck(:text_value).uniq
   attr_list.each do |al|
-    puts al
+    puts "Searching string '#{al}' ..."
     text = Ngram.new(al.gsub /'/, "''") #ORACLE ESCAPE SINGLE QUOTE
-    check_deposit_name(text)
+    deposit = check_deposit_name(text)
+	unless deposit.nil?
+	 #puts "#{al} ::: #{deposit.eno} - #{deposit.entityid}"
+	end
   end
   
 end
@@ -31,22 +34,24 @@ end
 def check_deposit_name(text,n=1)
 
   ngrams = text.ngrams(n)
-  
   ngrams.each do |ng|
     case n
     when 1
       name = ng[0]
+	  puts name
     when 2
       name = "#{ng[0]} #{ng[1]}"
     else
-      return 
+	  puts "Am i Here?"
+      return nil
     end
     deposits=Deposit.by_name(name)
+	puts "Found #{deposits.size} deposit(s)"
     case deposits.size
     when 1
-      puts deposits.first.eno
       return deposits.first.eno
     else 
+	puts n
       check_deposit_name(text,n+1)
     end  
   end
