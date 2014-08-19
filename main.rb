@@ -23,7 +23,7 @@ def read_borehole_attributes
   attr_list = borehole_atrributes.pluck(:text_value).uniq
   attr_list.each do |al|
     puts "Searching string '#{al}' ..."
-    text=al.gsub(/\W+/,' ').trim
+    text=al.gsub(/\W+/,' ').strip
     ngram = Ngram.new(al.gsub /'/, "''") #ORACLE ESCAPE SINGLE QUOTE
     deposit = check_deposit_name(ngram)
 	  unless deposit.nil?
