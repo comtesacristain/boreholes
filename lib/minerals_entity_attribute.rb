@@ -2,6 +2,8 @@ class MineralsEntityAttribute < ActiveRecord::Base
   include SafeAttributes::Base
   self.table_name = "mgd.entity_attribs"
   self.primary_key = :eno
+  
+  belongs_to :drillhole, :foreign_key => :eno
 
   set_date_columns :entrydate, :qadate, :lastupdate, :effective_date, :acquisition_date, :expiry_date
   

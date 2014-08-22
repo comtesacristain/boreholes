@@ -1,6 +1,8 @@
 class Drillhole < Entity
 
-  has_many :samples, :foreign_key => :eno
+  has_many :mineral_entity_attributes, :foreign_key => :eno
+
+
 
   def self.default_scope
     where(:entity_type => 'DRILLHOLE')
