@@ -1,6 +1,6 @@
 class Drillhole < Entity
 
-  has_many :mineral_entity_attributes, :foreign_key => :eno
+  has_many :mineral_entity_attributes, :class_name => "MineralsEntityAttribute", :foreign_key => :eno
 
 
 
